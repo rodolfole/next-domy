@@ -1,6 +1,8 @@
 import getCurrentUser from "@/actions/getCurrentUser";
 import getListings from "@/actions/getListings";
+import ClientOnly from "@/components/ClientOnly";
 import Container from "@/components/Container";
+import EmptyState from "@/components/EmptyState";
 import ListingCard from "@/components/listings/ListingCard";
 import { IListingsParams } from "@/types";
 
@@ -8,20 +10,23 @@ interface HomeProps {
   searchParams: IListingsParams;
 }
 
-export const dynamic = "force-dynamic";
-
 const HomePage = async ({ searchParams }: HomeProps) => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
-  console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-  console.log({ listings, searchParams });
-  console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+  if (listings.length === 0) {
+    return (
+      <ClientOnly>
+        <EmptyState showReset />
+      </ClientOnly>
+    );
+  }
 
   return (
-    <Container>
-      <div
-        className="
+    <ClientOnly>
+      <Container>
+        <div
+          className="
             2xl:grid-cols-6
             gap-8
             grid 
@@ -32,16 +37,17 @@ const HomePage = async ({ searchParams }: HomeProps) => {
             sm:grid-cols-2 
             xl:grid-cols-5
           "
-      >
-        {listings.map((listing: any) => (
-          <ListingCard
-            currentUser={currentUser}
-            data={listing}
-            key={listing.id}
-          />
-        ))}
-      </div>
-    </Container>
+        >
+          {listings.map((listing: any) => (
+            <ListingCard
+              currentUser={currentUser}
+              data={listing}
+              key={listing.id}
+            />
+          ))}
+        </div>
+      </Container>
+    </ClientOnly>
   );
 };
 
