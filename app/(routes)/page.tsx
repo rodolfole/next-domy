@@ -13,8 +13,11 @@ interface HomeProps {
 }
 
 const HomePage = async ({ searchParams }: HomeProps) => {
-  const listings = await getListings(searchParams);
+  // const listings = await getListings(searchParams);
   // const currentUser = await getCurrentUser();
+  console.log("prueba de airbnb");
+
+  const listings: any[] = [];
 
   if (listings.length === 0) {
     return (
