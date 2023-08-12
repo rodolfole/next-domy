@@ -1,34 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Airbnb Clone
+
+<img src="https://res.cloudinary.com/dtqijixar/image/upload/v1691862653/Previews/Preview_Rental_gs42te.jpg" height="300px"/>
+
+### [Demo](https://next-rental-app.vercel.app)
+
+## Cloning the repository
+
+```shell
+git clone https://github.com/rodolfole/next-rental-app.git
+```
 
 ## Getting Started
 
-First, run the development server:
+Install the dependencies:
 
-```bash
-npm run dev
+```sh
+$ pnpm i
 # or
-yarn dev
+$ yarn
 # or
-pnpm dev
+$ npm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Setup .env file
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```js
+DATABASE_URL=
+GITHUB_ID=
+GITHUB_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+NEXTAUTH_SECRET=
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Config prisma
 
-## Learn More
+```sh
+$ pnpm prisma generate
+$ pnpm prisma db push
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the app
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+$ pnpm dev
+# or
+$ yarn
+# or
+$ npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Built With
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Nextjs 13
+- Prisma
+- MongoDB
+- Tailwind
+- Zustand
