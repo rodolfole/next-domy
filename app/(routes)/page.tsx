@@ -14,7 +14,7 @@ interface HomeProps {
 
 const HomePage = async ({ searchParams }: HomeProps) => {
   const listings = await getListings(searchParams);
-  const currentUser = await getCurrentUser();
+  // const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
     return (
@@ -41,11 +41,7 @@ const HomePage = async ({ searchParams }: HomeProps) => {
           "
         >
           {listings.map((listing: any) => (
-            <ListingCard
-              currentUser={currentUser}
-              data={listing}
-              key={listing.id}
-            />
+            <ListingCard currentUser={null} data={listing} key={listing.id} />
           ))}
         </div>
       </Container>
